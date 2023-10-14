@@ -5,10 +5,12 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import  org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 
+import static java.lang.Thread.sleep;
+
 // new change
 public class DuotifyDemo {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
 
 
         WebDriver driver = new ChromeDriver();
@@ -54,15 +56,15 @@ public class DuotifyDemo {
             System.out.println("Username is incorrect.");
         }
         driver.findElement(By.id("rafael")).click();
+        Thread.sleep(1000);
+
         String currentUrl = driver.getCurrentUrl();
-        if (currentUrl.equals("http://duotify.us-east-2.elasticbeanstalk.com/register.php")){
-            System.out.println("URL matches!");
-        } else{
-            System.out.println("URL does not match!");
-        }
+        Assert.assertEquals(currentUrl, "http://duotify.us-east-2.elasticbeanstalk.com/register.php");
+
         driver.findElement(By.name("loginUsername")).sendKeys(userName);
         driver.findElement(By.name("loginPassword")).sendKeys(password);
         driver.findElement(By.name("loginButton")).click();
+        Thread.sleep(1000);
 
         String pageSource = driver.getPageSource();
         String textToVerify = "You Might Also Like";
@@ -76,11 +78,37 @@ public class DuotifyDemo {
 
         WebElement usernameLink2 = (driver.findElement(By.id("nameFirstAndLast")));
         usernameLink2.click();
+        sleep(500);
         driver.findElement(By.id("rafael")).click();
+        sleep(1000);
 
         Assert.assertEquals(driver.getCurrentUrl(), "http://duotify.us-east-2.elasticbeanstalk.com/register.php");
 
         driver.quit();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
