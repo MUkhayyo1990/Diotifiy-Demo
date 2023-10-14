@@ -7,7 +7,6 @@ import org.testng.Assert;
 
 import static java.lang.Thread.sleep;
 
-// new change
 public class DuotifyDemo {
 
     public static void main(String[] args) throws InterruptedException {
